@@ -37,7 +37,7 @@ namespace PhoneCompany.UI
 
             using (var scope = Services.CreateScope())
             {
-                //scope.ServiceProvider.GetRequiredService<DbInitializer>().InitializeAsync().Wait();
+                scope.ServiceProvider.GetRequiredService<DbInitializer>().Initialize();
             }
 
 
@@ -52,11 +52,7 @@ namespace PhoneCompany.UI
             await host.StopAsync();
         }
 
-        internal static void ConfigureServices(HostBuilderContext host, IServiceCollection services) => services
-            .AddViews()
-            .AddServices()
-            .AddDatabase(host.Configuration.GetSection("Database"))
-        ;
+        
     }
 
 }

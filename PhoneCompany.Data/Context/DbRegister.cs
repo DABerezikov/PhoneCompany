@@ -8,7 +8,7 @@ namespace PhoneCompany.Data.Context
     {
         public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration) => services
             
-            .AddSingleton<DbInitializer>()
+            .AddSingleton(new DbInitializer(configuration.GetConnectionString("SQlite")))
             .AddRepositoriesInDb()
         ;
     }
