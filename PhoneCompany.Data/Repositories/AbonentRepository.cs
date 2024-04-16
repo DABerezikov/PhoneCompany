@@ -27,20 +27,18 @@ public class AbonentRepository(DbInitializer dbInitializer) : IRepository<Abonen
 
     public List<Abonent> GetList()
     {
-        string sqlquery = @"SELECT  Abonent.Id, AddressId, PhoneNumberId, Abonent.Name, LastName, Patronymic,
-                                    Address.Id, StreetId,
-                                    Street.Id, Street.Name,
-                                    PhoneNumber.Id, HomePhone, WorkPhone, MobilPhone
+        string sqlquery = @"SELECT  Abonents.Id,  Abonents.Name, LastName, Patronymic, 
+                                    AddressId, Addresses.Id,  NumberHouse,
+                                    PhoneNumberId, PhoneNumbers.Id, HomePhone, WorkPhone, MobilPhone, 
+                                    StreetId, Streets.Id, Streets.Name 
+                                   
                             FROM Abonents
 
-                            INNER JOIN PhoneNumbers ON Abonent.PhoneNumberId = PhoneNumber.Id
+                            INNER JOIN PhoneNumbers ON Abonents.PhoneNumberId = PhoneNumbers.Id
 
-                            INNER JOIN ( SELECT Address.Id, StreetId,
-                                                Street.Id, Street.Name
-                                         FROM Streets
-                                         INNER JOIN Addresses ON Address.StreetId = Street.Id 
+                            INNER JOIN Addresses ON Abonents.AddressId = Addresses.Id
 
-                        ) AS Address ON Abonent.AddressId = Address.Id";
+                            INNER JOIN Streets ON Addresses.StreetId = Streets.Id";
 
 
 
