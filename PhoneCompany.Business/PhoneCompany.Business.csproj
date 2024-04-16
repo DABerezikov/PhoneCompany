@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PhoneCompany.Common\PhoneCompany.Common.csproj" />
+    <ProjectReference Include="..\PhoneCompany.Data\PhoneCompany.Data.csproj" />
   </ItemGroup>
 
 </Project>

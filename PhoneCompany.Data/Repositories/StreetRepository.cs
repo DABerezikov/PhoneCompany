@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using System.Data.SQLite;
+using Dapper;
 using PhoneCompany.Common.Interfaces;
 using PhoneCompany.Data.Context;
 using PhoneCompany.Data.Entities;
@@ -7,7 +8,7 @@ namespace PhoneCompany.Data.Repositories
 {
     public class StreetRepository(DbInitializer dbInitializer) : IRepository<Street>
     {
-        public DbInitializer DbInitializer { get; } = dbInitializer;
+        public SQLiteConnection Connection { get; } = dbInitializer.Connection;
 
 
         public void Create(Street street)
@@ -29,8 +30,7 @@ namespace PhoneCompany.Data.Repositories
         {
             var query = "SELECT * FROM Streets";
 
-           return DbInitializer.Connection.Query<Street>(query).ToList();
-
+           return Connection.Query<Street>(query).ToList();
            
         }
 

@@ -8,6 +8,7 @@ namespace PhoneCompany.Business.Services
         public static IServiceCollection AddServices(this IServiceCollection services) => services
             
             .AddSingleton<IUserDialog, UserDialog>()
+            .AddSingleton<IAbonentService, AbonentService>()
             ;
 
     }
