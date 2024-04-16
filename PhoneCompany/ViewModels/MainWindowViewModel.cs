@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows.Data;
 using System.Windows.Input;
 using PhoneCompany.Business.Models;
 using PhoneCompany.Common.Interfaces;
@@ -8,15 +10,57 @@ using PhoneCompany.UI.ViewModels.Base;
 
 namespace PhoneCompany.UI.ViewModels
 {
-    internal class MainWindowViewModel(
-        IAbonentService abonents,
-        IUserDialog dialog)
-        : ViewModel
+    internal class MainWindowViewModel : ViewModel
     {
-        private IAbonentService _abonents = abonents;
-        private IUserDialog _userDialog = dialog;
+        private IUserDialog _userDialog;
+        private readonly IAbonentService _abonents;
+        private readonly CollectionViewSource _abonentsView;
         
-        
+        public ICollectionView FilteredView => _abonentsView.View;
+
+
+        public MainWindowViewModel(IAbonentService abonents,
+            IUserDialog dialog)
+        {
+            _abonents = abonents;
+            _userDialog = dialog;
+            _abonentsView = new CollectionViewSource();
+            _abonentsView.Filter += Filtering;
+
+        }
+
+        private void Filtering(object sender, FilterEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(Filter)) return;
+            if (e.Item is not AbonentFromViewModel filteredItem) return;
+
+            if (!filteredItem.Name.Contains(Filter, StringComparison.OrdinalIgnoreCase))
+                e.Accepted = false;
+            
+            if (!filteredItem.LastName.Contains(Filter, StringComparison.OrdinalIgnoreCase))
+                e.Accepted = false;
+            
+            if (string.IsNullOrWhiteSpace(filteredItem.Patronymic) || !filteredItem.Patronymic.Contains(Filter, StringComparison.OrdinalIgnoreCase))
+                e.Accepted = false;
+            
+            if (!filteredItem.Street.Contains(Filter, StringComparison.OrdinalIgnoreCase))
+                e.Accepted = false;
+            
+            if (!filteredItem.NumberHouse.Contains(Filter, StringComparison.OrdinalIgnoreCase))
+                e.Accepted = false;
+            
+            if (!filteredItem.HomePhone.Contains(Filter, StringComparison.OrdinalIgnoreCase))
+                e.Accepted = false;
+            
+            if (!filteredItem.WorkPhone.Contains(Filter, StringComparison.OrdinalIgnoreCase))
+                e.Accepted = false;
+            
+            if (!filteredItem.MobilPhone.Contains(Filter, StringComparison.OrdinalIgnoreCase))
+                e.Accepted = false;
+            
+
+        }
+
         #region Title : string - Заголовок окна
 
         /// <summary>Заголовок окна</summary>
@@ -37,12 +81,33 @@ namespace PhoneCompany.UI.ViewModels
 
         #endregion
 
+        #region Filter : string - Заголовок окна
+
+        /// <summary>Строка фильтрации</summary>
+        private string _Filter = string.Empty;
+
+        /// <summary>Строка фильтрации</summary>
+        public string Filter
+        {
+            get => _Filter;
+            set
+            {
+                Set(ref _Filter, value);
+                FilteredView.Refresh();
+            }
+        }
+
+        #endregion
+
         #region Команды
 
         #region Command LoadDataCommand - Команда для загрузки данных из репозитория
 
         /// <summary> Команда для загрузки данных из репозитория </summary>
         private ICommand _LoadDataCommand;
+
+
+
 
         /// <summary> Команда для загрузки данных из репозитория </summary>
         public ICommand LoadDataCommand => _LoadDataCommand
@@ -57,9 +122,12 @@ namespace PhoneCompany.UI.ViewModels
             var collection = _abonents.Abonents.Select(CreateAbonentFromViewModel);
 
             Abonents = new ObservableCollection<AbonentFromViewModel>(collection);
-
-
+            _abonentsView.Source = Abonents;
+            OnPropertyChanged(nameof(FilteredView));
+           
         }
+
+       
 
         private AbonentFromViewModel CreateAbonentFromViewModel(Abonent abonent)
         {

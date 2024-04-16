@@ -7,7 +7,7 @@
         xmlns:l="clr-namespace:PhoneCompany.UI.Views"
         DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
         Title="{Binding Title}"
-         Height="1080" Width="1920">
+         Height="1080" Width="1340">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -37,22 +37,22 @@
                 <ColumnDefinition Width="300"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="Фильтрация:" Margin="10"/>
-            <TextBox Grid.Column="1" Margin="10" Text="{Binding Filter}"/>
+            <TextBox Grid.Column="1" Margin="10" Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged}"/>
 
         </Grid>
 
             
-        <DataGrid DockPanel.Dock="Top" ItemsSource="{Binding Abonents}"
-                  ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}" IsReadOnly="True">
+        <DataGrid DockPanel.Dock="Top" ItemsSource="{Binding FilteredView}"
+                  ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}" IsReadOnly="True" CanUserAddRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="150"/>
-                <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="150"/>
-                <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" Width="150"/>
-                <DataGridTextColumn Header="Улица" Binding="{Binding Street}" Width="150"/>
-                <DataGridTextColumn Header="Номер дома" Binding="{Binding NumberHouse}" Width="100"/>
-                <DataGridTextColumn Header="Номер телефона (домашний)" Binding="{Binding HomePhone}" Width="200"/>
-                <DataGridTextColumn Header="Номер телефона (рабочий)" Binding="{Binding WorkPhone}" Width="200"/>
-                <DataGridTextColumn Header="Номер телефона (мобильный)" Binding="{Binding MobilPhone}" Width="200"/>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="2*"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="2*"/>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" Width="2*"/>
+                <DataGridTextColumn Header="Улица" Binding="{Binding Street}" Width="2*"/>
+                <DataGridTextColumn Header="Номер дома" Binding="{Binding NumberHouse}" Width="1.3*"/>
+                <DataGridTextColumn Header="Номер телефона (домашний)" Binding="{Binding HomePhone}" Width="3*"/>
+                <DataGridTextColumn Header="Номер телефона (рабочий)" Binding="{Binding WorkPhone}" Width="3*"/>
+                <DataGridTextColumn Header="Номер телефона (мобильный)" Binding="{Binding MobilPhone}" Width="3*"/>
                    
                 </DataGrid.Columns>
 
