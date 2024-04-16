@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-        xmlns:l="clr-namespace:PhoneCompany.UI.Views"
         DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
         Title="{Binding Title}"
          Height="1080" Width="1340">
@@ -45,15 +44,71 @@
         <DataGrid DockPanel.Dock="Top" ItemsSource="{Binding FilteredView}"
                   ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}" IsReadOnly="True" CanUserAddRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="2*"/>
-                <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="2*"/>
-                <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" Width="2*"/>
-                <DataGridTextColumn Header="Улица" Binding="{Binding Street}" Width="2*"/>
-                <DataGridTextColumn Header="Номер дома" Binding="{Binding NumberHouse}" Width="1.3*"/>
-                <DataGridTextColumn Header="Номер телефона (домашний)" Binding="{Binding HomePhone}" Width="3*"/>
-                <DataGridTextColumn Header="Номер телефона (рабочий)" Binding="{Binding WorkPhone}" Width="3*"/>
-                <DataGridTextColumn Header="Номер телефона (мобильный)" Binding="{Binding MobilPhone}" Width="3*"/>
-                   
+                    <DataGridTextColumn Binding="{Binding Name}" Width="2*">
+                        <DataGridTextColumn.Header>
+                            <DockPanel>
+                                <TextBlock  DockPanel.Dock="Left" Text="Имя" />
+                            <CheckBox DockPanel.Dock="Left" Content="{Binding IsNameFiltered}" Margin="10,0,0,0"/>
+                            </DockPanel>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding LastName}" Width="2*">
+                        <DataGridTextColumn.Header>
+                            <DockPanel>
+                                <TextBlock  DockPanel.Dock="Left" Text="Фамилия" />
+                                <CheckBox DockPanel.Dock="Left" Content="{Binding IsLastNameFiltered}" Margin="10,0,0,0"/>
+                            </DockPanel>
+                    </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Patronymic}" Width="2*">
+                        <DataGridTextColumn.Header>
+                            <DockPanel>
+                                <TextBlock  DockPanel.Dock="Left" Text="Отчество" />
+                                <CheckBox DockPanel.Dock="Left" Content="{Binding IsPatronymicFiltered}" Margin="10,0,0,0"/>
+                            </DockPanel>
+                    </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Street}" Width="2*">
+                        <DataGridTextColumn.Header>
+                            <DockPanel>
+                                <TextBlock  DockPanel.Dock="Left" Text="Улица" />
+                                <CheckBox DockPanel.Dock="Left" Content="{Binding IsStreetFiltered}" Margin="10,0,0,0"/>
+                            </DockPanel>
+                    </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding NumberHouse}" Width="1.3*">
+                        <DataGridTextColumn.Header>
+                            <DockPanel>
+                                <TextBlock  DockPanel.Dock="Left" Text="Номер дома" />
+                                <CheckBox DockPanel.Dock="Left" Content="{Binding IsNumberHouseFiltered}" Margin="10,0,0,0"/>
+                            </DockPanel>
+                    </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding HomePhone}" Width="3*">
+                        <DataGridTextColumn.Header>
+                            <DockPanel>
+                                <TextBlock  DockPanel.Dock="Left" Text="Номер телефона (домашний)" />
+                                <CheckBox DockPanel.Dock="Left" Content="{Binding IsHomePhoneFiltered}" Margin="10,0,0,0"/>
+                            </DockPanel>
+                    </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding WorkPhone}" Width="3*">
+                        <DataGridTextColumn.Header>
+                            <DockPanel>
+                                <TextBlock  DockPanel.Dock="Left" Text="Номер телефона (рабочий)" />
+                                <CheckBox DockPanel.Dock="Left" Content="{Binding IsWorkPhoneFiltered}" Margin="10,0,0,0"/>
+                            </DockPanel>
+                    </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding MobilPhone}" Width="3*">
+                        <DataGridTextColumn.Header>
+                            <DockPanel>
+                                <TextBlock  DockPanel.Dock="Left" Text="Номер телефона (мобильный)" />
+                                <CheckBox DockPanel.Dock="Left" Content="{Binding IsMobilPhoneFiltered}" Margin="10,0,0,0"/>
+                            </DockPanel>
+                    </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+
                 </DataGrid.Columns>
 
         </DataGrid>

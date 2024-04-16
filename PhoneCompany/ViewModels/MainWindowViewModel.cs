@@ -81,7 +81,7 @@ namespace PhoneCompany.UI.ViewModels
 
         #endregion
 
-        #region Filter : string - Заголовок окна
+        #region Filter : string - Строка фильтрации
 
         /// <summary>Строка фильтрации</summary>
         private string _Filter = string.Empty;
@@ -98,6 +98,88 @@ namespace PhoneCompany.UI.ViewModels
         }
 
         #endregion
+
+        #region IsNameFiltered : bool - Фильтрация по имени
+
+        /// <summary>Фильтрация по имени</summary>
+        private bool _IsNameFiltered;
+
+        /// <summary>Фильтрация по имени</summary>
+        public bool IsNameFiltered { get => _IsNameFiltered; set => Set(ref _IsNameFiltered, value); }
+
+        #endregion
+        
+        #region IsLastNameFiltered : bool - Фильтрация по фамилии
+
+        /// <summary>Фильтрация по фамилии</summary>
+        private bool _IsLastNameFiltered;
+
+        /// <summary>Фильтрация по фамилии</summary>
+        public bool IsLastNameFiltered { get => _IsLastNameFiltered; set => Set(ref _IsLastNameFiltered, value); }
+
+        #endregion
+
+        #region IsPatronymicFiltered : bool - Фильтрация по отчеству
+
+        /// <summary>Фильтрация по отчеству</summary>
+        private bool _IsPatronymicFiltered;
+
+        /// <summary>Фильтрация по отчеству</summary>
+        public bool IsPatronymicFiltered { get => _IsPatronymicFiltered; set => Set(ref _IsPatronymicFiltered, value); }
+
+        #endregion
+        
+        #region IsStreetFiltered : bool - Фильтрация по улице
+
+        /// <summary>Фильтрация по улице</summary>
+        private bool _IsStreetFiltered;
+
+        /// <summary>Фильтрация по улице</summary>
+        public bool IsStreetFiltered { get => _IsStreetFiltered; set => Set(ref _IsStreetFiltered, value); }
+
+        #endregion
+
+        #region IsNumberHouseFiltered : bool - Фильтрация по номеру дома
+
+        /// <summary>Фильтрация по номеру дома</summary>
+        private bool _IsNumberHouseFiltered;
+
+        /// <summary>Фильтрация по номеру дома</summary>
+        public bool IsNumberHouseFiltered { get => _IsNumberHouseFiltered; set => Set(ref _IsNumberHouseFiltered, value); }
+
+        #endregion
+
+        #region IsHomePhoneFiltered : bool - Фильтрация по домашнему телефону
+
+        /// <summary>Фильтрация по домашнему телефону</summary>
+        private bool _IsHomePhoneFiltered;
+
+        /// <summary>Фильтрация по домашнему телефону</summary>
+        public bool IsHomePhoneFiltered { get => _IsHomePhoneFiltered; set => Set(ref _IsHomePhoneFiltered, value); }
+
+        #endregion
+
+        #region IsWorkPhoneFiltered : bool - Фильтрация по рабочему телефону
+
+        /// <summary>Фильтрация по рабочему телефону</summary>
+        private bool _IsWorkPhoneFiltered;
+
+        /// <summary>Фильтрация по рабочему телефону</summary>
+        public bool IsWorkPhoneFiltered { get => _IsWorkPhoneFiltered; set => Set(ref _IsWorkPhoneFiltered, value); }
+
+        #endregion
+
+        #region IsMobilPhoneFiltered : bool - Фильтрация по мобильному телефону
+
+        /// <summary>Фильтрация по мобильному телефону</summary>
+        private bool _IsMobilPhoneFiltered;
+
+        /// <summary>Фильтрация по мобильному телефону</summary>
+        public bool IsMobilPhoneFiltered { get => _IsMobilPhoneFiltered; set => Set(ref _IsMobilPhoneFiltered, value); }
+
+        #endregion
+        
+       
 
         #region Команды
 

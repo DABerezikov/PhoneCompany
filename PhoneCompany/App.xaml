@@ -1,7 +1,6 @@
 ﻿<Application x:Class="PhoneCompany.UI.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:PhoneCompany"
              xmlns:viewModels="clr-namespace:PhoneCompany.UI.ViewModels"
              StartupUri="/Views/MainWindow.xaml">
     <Application.Resources>
