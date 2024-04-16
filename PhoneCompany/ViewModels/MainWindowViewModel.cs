@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
+using PhoneCompany.Business.Models;
 using PhoneCompany.Common.Interfaces;
 using PhoneCompany.Data.Entities;
 using PhoneCompany.UI.Commands;
@@ -29,10 +30,10 @@ namespace PhoneCompany.UI.ViewModels
         #region Abonents : ObservableCollection<Abonent> - Коллекция абонентов
 
         /// <summary>Коллекция абонентов</summary>
-        private ObservableCollection<Abonent> _Abonents ;
+        private ObservableCollection<AbonentFromViewModel> _Abonents ;
 
         /// <summary>Коллекция абонентов</summary>
-        public ObservableCollection<Abonent> Abonents { get => _Abonents; set => Set(ref _Abonents, value); }
+        public ObservableCollection<AbonentFromViewModel> Abonents { get => _Abonents; set => Set(ref _Abonents, value); }
 
         #endregion
 
@@ -53,9 +54,27 @@ namespace PhoneCompany.UI.ViewModels
         /// <summary> Логика выполнения - Команда для загрузки данных из репозитория </summary>
         private void OnLoadDataCommandExecuted()
         {
-            Abonents = new ObservableCollection<Abonent>(_abonents.Abonents);
+            var collection = _abonents.Abonents.Select(CreateAbonentFromViewModel);
+
+            Abonents = new ObservableCollection<AbonentFromViewModel>(collection);
 
 
+        }
+
+        private AbonentFromViewModel CreateAbonentFromViewModel(Abonent abonent)
+        {
+            return new AbonentFromViewModel()
+            {
+                Id = abonent.Id,
+                Name = abonent.Name,
+                LastName = abonent.LastName,
+                Patronymic = abonent.Patronymic,
+                Street = abonent.Address.Street.Name,
+                NumberHouse = abonent.Address.NumberHouse,
+                HomePhone = abonent.PhoneNumbers.HomePhone,
+                MobilPhone = abonent.PhoneNumbers.MobilPhone,
+                WorkPhone = abonent.PhoneNumbers.WorkPhone
+            };
         }
         #endregion
         #endregion

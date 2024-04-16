@@ -7,7 +7,7 @@
         xmlns:l="clr-namespace:PhoneCompany.UI.Views"
         DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
         Title="{Binding Title}"
-         Height="450" Width="800">
+         Height="1080" Width="1920">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -15,7 +15,49 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
-    <Grid>
-        <DataGrid ItemsSource="{Binding Abonents}"></DataGrid>
-    </Grid>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" IsMainMenu="True">
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <DockPanel LastChildFill="False"/>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+            <MenuItem Header="Файл">
+                <MenuItem Header="Выход" Command="{StaticResource CloseWindowCommand}"/>
+            </MenuItem>
+            <MenuItem Header="Поиск" Command="{Binding FindAbonentCommand}"/>
+            <MenuItem Header="Улицы" Command="{Binding StreetReportCommand}"/>
+            <MenuItem Header="Выгрузить CSV" Command="{Binding CreateReportCommand}"/>
+
+        </Menu>
+
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Фильтрация:" Margin="10"/>
+            <TextBox Grid.Column="1" Margin="10" Text="{Binding Filter}"/>
+
+        </Grid>
+
+            
+        <DataGrid DockPanel.Dock="Top" ItemsSource="{Binding Abonents}"
+                  ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="150"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="150"/>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" Width="150"/>
+                <DataGridTextColumn Header="Улица" Binding="{Binding Street}" Width="150"/>
+                <DataGridTextColumn Header="Номер дома" Binding="{Binding NumberHouse}" Width="100"/>
+                <DataGridTextColumn Header="Номер телефона (домашний)" Binding="{Binding HomePhone}" Width="200"/>
+                <DataGridTextColumn Header="Номер телефона (рабочий)" Binding="{Binding WorkPhone}" Width="200"/>
+                <DataGridTextColumn Header="Номер телефона (мобильный)" Binding="{Binding MobilPhone}" Width="200"/>
+                   
+                </DataGrid.Columns>
+
+        </DataGrid>
+        
+    </DockPanel>
+
 </Window>
