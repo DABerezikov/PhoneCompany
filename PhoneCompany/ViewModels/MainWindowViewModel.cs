@@ -1,11 +1,17 @@
-﻿using PhoneCompany.UI.ViewModels.Base;
+﻿using PhoneCompany.Common.Interfaces;
+using PhoneCompany.UI.ViewModels.Base;
 
 namespace PhoneCompany.UI.ViewModels
 {
     internal class MainWindowViewModel(
-        )
+        IAbonentService abonents,
+        IUserDialog dialog)
         : ViewModel
     {
+        private IAbonentService _abonents = abonents;
+        private IUserDialog _userDialog = dialog;
+        
+        
         #region Title : string - Заголовок окна
 
         /// <summary>Заголовок окна</summary>

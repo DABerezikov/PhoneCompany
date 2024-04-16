@@ -1,4 +1,4 @@
-﻿namespace PhoneCompany.Common.Interfaces
+﻿namespace PhoneCompany.Data.Repositories
 {
     public interface IRepository<T> where T : class
     {

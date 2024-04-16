@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PhoneCompany.Common.Interfaces;
 using PhoneCompany.Data.Entities;
 
 namespace PhoneCompany.Data.Repositories

@@ -7,12 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Utilities\" />
     <Folder Include="Constants\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.118" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PhoneCompany.Data\PhoneCompany.Data.csproj" />
   </ItemGroup>
 
 </Project>

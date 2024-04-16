@@ -1,6 +1,5 @@
 ﻿using System.Data.SQLite;
 using Dapper;
-using PhoneCompany.Common.Interfaces;
 using PhoneCompany.Data.Context;
 using PhoneCompany.Data.Entities;
 
