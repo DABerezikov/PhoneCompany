@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using PhoneCompany.UI.Commands.Base;
+﻿using PhoneCompany.UI.Commands.Base;
 
 namespace PhoneCompany.UI.Commands
 {

@@ -1,6 +1,4 @@
-﻿using System.Windows;
-
-namespace PhoneCompany.UI.Views
+﻿namespace PhoneCompany.UI.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

@@ -7,23 +7,24 @@ using PhoneCompany.Common.Interfaces;
 using PhoneCompany.Data.Entities;
 using PhoneCompany.UI.Commands;
 using PhoneCompany.UI.ViewModels.Base;
+using PhoneCompany.UI.Views;
 
 namespace PhoneCompany.UI.ViewModels
 {
     internal class MainWindowViewModel : ViewModel
     {
-        private IUserDialog _userDialog;
+       
         private readonly IAbonentService _abonents;
         private readonly CollectionViewSource _abonentsView;
         
         public ICollectionView FilteredView => _abonentsView.View;
 
 
-        public MainWindowViewModel(IAbonentService abonents,
-            IUserDialog dialog)
+        public MainWindowViewModel(IAbonentService abonents
+           )
         {
             _abonents = abonents;
-            _userDialog = dialog;
+            
             _abonentsView = new CollectionViewSource();
             _abonentsView.Filter += Filtering;
 
@@ -248,18 +249,32 @@ namespace PhoneCompany.UI.ViewModels
                 e.Accepted = false;
 
 
-        } 
+        }
+
+        private AbonentFromViewModel CreateAbonentFromViewModel(Abonent abonent)
+        {
+            return new AbonentFromViewModel()
+            {
+                Id = abonent.Id,
+                Name = abonent.Name,
+                LastName = abonent.LastName,
+                Patronymic = abonent.Patronymic,
+                Street = abonent.Address.Street.Name,
+                NumberHouse = abonent.Address.NumberHouse,
+                HomePhone = abonent.PhoneNumbers.HomePhone,
+                MobilPhone = abonent.PhoneNumbers.MobilPhone,
+                WorkPhone = abonent.PhoneNumbers.WorkPhone
+            };
+        }
+
         #endregion
 
         #region Команды
 
-        #region Command LoadDataCommand - Команда для загрузки данных из репозитория
+        #region Command FindAbonentCommand - Команда для загрузки данных из репозитория
 
         /// <summary> Команда для загрузки данных из репозитория </summary>
         private ICommand _LoadDataCommand;
-
-
-
 
         /// <summary> Команда для загрузки данных из репозитория </summary>
         public ICommand LoadDataCommand => _LoadDataCommand
@@ -278,25 +293,31 @@ namespace PhoneCompany.UI.ViewModels
             OnPropertyChanged(nameof(FilteredView));
            
         }
+        #endregion
 
-       
+        #region Command FindAbonentCommand - Команда для поиска аббонентов
 
-        private AbonentFromViewModel CreateAbonentFromViewModel(Abonent abonent)
+        /// <summary> Команда для поиска аббонентов </summary>
+        private ICommand _FindAbonentCommand;
+
+        /// <summary> Команда для поиска аббонентов </summary>
+        public ICommand FindAbonentCommand => _FindAbonentCommand
+            ??= new LambdaCommand(OnFindAbonentCommandExecuted, CanFindAbonentCommandExecute);
+
+        /// <summary> Проверка возможности выполнения - Команда для поиска аббонентов </summary>
+        private bool CanFindAbonentCommandExecute() => true;
+
+        /// <summary> Логика выполнения - Команда для поиска аббонентов </summary>
+        private void OnFindAbonentCommandExecuted()
         {
-            return new AbonentFromViewModel()
-            {
-                Id = abonent.Id,
-                Name = abonent.Name,
-                LastName = abonent.LastName,
-                Patronymic = abonent.Patronymic,
-                Street = abonent.Address.Street.Name,
-                NumberHouse = abonent.Address.NumberHouse,
-                HomePhone = abonent.PhoneNumbers.HomePhone,
-                MobilPhone = abonent.PhoneNumbers.MobilPhone,
-                WorkPhone = abonent.PhoneNumbers.WorkPhone
-            };
+
+            var window = new FindWindow();
+            window.DataContext = new FindWindowViewModel(Abonents);
+            window.Show();
+
         }
         #endregion
+
         #endregion
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Windows;
 using Microsoft.Extensions.Configuration;
 using PhoneCompany.UI.ViewModels;
 using PhoneCompany.Business.Services;
