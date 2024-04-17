@@ -29,39 +29,9 @@ namespace PhoneCompany.UI.ViewModels
 
         }
 
-        private void Filtering(object sender, FilterEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(Filter)) return;
-            if (e.Item is not AbonentFromViewModel filteredItem) return;
 
-            if (IsNameFiltered && !filteredItem.Name.Contains(Filter, StringComparison.OrdinalIgnoreCase))
-                e.Accepted = false;
-            
-            if (IsLastNameFiltered && !filteredItem.LastName.Contains(Filter, StringComparison.OrdinalIgnoreCase))
-                e.Accepted = false;
-           
-            if(!string.IsNullOrWhiteSpace(filteredItem.Patronymic))
-                if ( IsPatronymicFiltered || !filteredItem.Patronymic.Contains(Filter, StringComparison.OrdinalIgnoreCase))
-                    e.Accepted = false;
-            
-            if (IsStreetFiltered && !filteredItem.Street.Contains(Filter, StringComparison.OrdinalIgnoreCase))
-                e.Accepted = false;
-            
-            if (IsNumberHouseFiltered && !filteredItem.NumberHouse.Contains(Filter, StringComparison.OrdinalIgnoreCase))
-                e.Accepted = false;
-            
-            if (IsHomePhoneFiltered && !filteredItem.HomePhone.Contains(Filter, StringComparison.OrdinalIgnoreCase))
-                e.Accepted = false;
-            
-            if (IsWorkPhoneFiltered && !filteredItem.WorkPhone.Contains(Filter, StringComparison.OrdinalIgnoreCase))
-                e.Accepted = false;
-            
-            if (IsMobilPhoneFiltered && !filteredItem.MobilPhone.Contains(Filter, StringComparison.OrdinalIgnoreCase))
-                e.Accepted = false;
-            
 
-        }
-
+        #region Свойства
         #region Title : string - Заголовок окна
 
         /// <summary>Заголовок окна</summary>
@@ -75,7 +45,7 @@ namespace PhoneCompany.UI.ViewModels
         #region Abonents : ObservableCollection<Abonent> - Коллекция абонентов
 
         /// <summary>Коллекция абонентов</summary>
-        private ObservableCollection<AbonentFromViewModel> _Abonents ;
+        private ObservableCollection<AbonentFromViewModel> _Abonents;
 
         /// <summary>Коллекция абонентов</summary>
         public ObservableCollection<AbonentFromViewModel> Abonents { get => _Abonents; set => Set(ref _Abonents, value); }
@@ -106,17 +76,33 @@ namespace PhoneCompany.UI.ViewModels
         private bool _IsNameFiltered;
 
         /// <summary>Фильтрация по имени</summary>
-        public bool IsNameFiltered { get => _IsNameFiltered; set => Set(ref _IsNameFiltered, value); }
+        public bool IsNameFiltered
+        {
+            get => _IsNameFiltered;
+            set
+            {
+                Set(ref _IsNameFiltered, value);
+                FilteredView.Refresh();
+            }
+        }
 
         #endregion
-        
+
         #region IsLastNameFiltered : bool - Фильтрация по фамилии
 
         /// <summary>Фильтрация по фамилии</summary>
-        private bool _IsLastNameFiltered;
+        private bool _IsLastNameFiltered = true;
 
         /// <summary>Фильтрация по фамилии</summary>
-        public bool IsLastNameFiltered { get => _IsLastNameFiltered; set => Set(ref _IsLastNameFiltered, value); }
+        public bool IsLastNameFiltered
+        {
+            get => _IsLastNameFiltered;
+            set
+            {
+                Set(ref _IsLastNameFiltered, value);
+                FilteredView.Refresh();
+            }
+        }
 
         #endregion
 
@@ -126,17 +112,33 @@ namespace PhoneCompany.UI.ViewModels
         private bool _IsPatronymicFiltered;
 
         /// <summary>Фильтрация по отчеству</summary>
-        public bool IsPatronymicFiltered { get => _IsPatronymicFiltered; set => Set(ref _IsPatronymicFiltered, value); }
+        public bool IsPatronymicFiltered
+        {
+            get => _IsPatronymicFiltered;
+            set
+            {
+                Set(ref _IsPatronymicFiltered, value);
+                FilteredView.Refresh();
+            }
+        }
 
         #endregion
-        
+
         #region IsStreetFiltered : bool - Фильтрация по улице
 
         /// <summary>Фильтрация по улице</summary>
         private bool _IsStreetFiltered;
 
         /// <summary>Фильтрация по улице</summary>
-        public bool IsStreetFiltered { get => _IsStreetFiltered; set => Set(ref _IsStreetFiltered, value); }
+        public bool IsStreetFiltered
+        {
+            get => _IsStreetFiltered;
+            set
+            {
+                Set(ref _IsStreetFiltered, value);
+                FilteredView.Refresh();
+            }
+        }
 
         #endregion
 
@@ -146,7 +148,15 @@ namespace PhoneCompany.UI.ViewModels
         private bool _IsNumberHouseFiltered;
 
         /// <summary>Фильтрация по номеру дома</summary>
-        public bool IsNumberHouseFiltered { get => _IsNumberHouseFiltered; set => Set(ref _IsNumberHouseFiltered, value); }
+        public bool IsNumberHouseFiltered
+        {
+            get => _IsNumberHouseFiltered;
+            set
+            {
+                Set(ref _IsNumberHouseFiltered, value);
+                FilteredView.Refresh();
+            }
+        }
 
         #endregion
 
@@ -156,7 +166,15 @@ namespace PhoneCompany.UI.ViewModels
         private bool _IsHomePhoneFiltered;
 
         /// <summary>Фильтрация по домашнему телефону</summary>
-        public bool IsHomePhoneFiltered { get => _IsHomePhoneFiltered; set => Set(ref _IsHomePhoneFiltered, value); }
+        public bool IsHomePhoneFiltered
+        {
+            get => _IsHomePhoneFiltered;
+            set
+            {
+                Set(ref _IsHomePhoneFiltered, value);
+                FilteredView.Refresh();
+            }
+        }
 
         #endregion
 
@@ -166,7 +184,15 @@ namespace PhoneCompany.UI.ViewModels
         private bool _IsWorkPhoneFiltered;
 
         /// <summary>Фильтрация по рабочему телефону</summary>
-        public bool IsWorkPhoneFiltered { get => _IsWorkPhoneFiltered; set => Set(ref _IsWorkPhoneFiltered, value); }
+        public bool IsWorkPhoneFiltered
+        {
+            get => _IsWorkPhoneFiltered;
+            set
+            {
+                Set(ref _IsWorkPhoneFiltered, value);
+                FilteredView.Refresh();
+            }
+        }
 
         #endregion
 
@@ -176,11 +202,54 @@ namespace PhoneCompany.UI.ViewModels
         private bool _IsMobilPhoneFiltered;
 
         /// <summary>Фильтрация по мобильному телефону</summary>
-        public bool IsMobilPhoneFiltered { get => _IsMobilPhoneFiltered; set => Set(ref _IsMobilPhoneFiltered, value); }
+        public bool IsMobilPhoneFiltered
+        {
+            get => _IsMobilPhoneFiltered;
+            set
+            {
+                Set(ref _IsMobilPhoneFiltered, value);
+                FilteredView.Refresh();
+            }
+        }
 
+        #endregion 
         #endregion
-        
-       
+
+        #region Методы
+
+        private void Filtering(object sender, FilterEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(Filter)) return;
+            if (e.Item is not AbonentFromViewModel filteredItem) return;
+
+            if (IsNameFiltered && !filteredItem.Name.Contains(Filter, StringComparison.OrdinalIgnoreCase))
+                e.Accepted = false;
+
+            if (IsLastNameFiltered && !filteredItem.LastName.Contains(Filter, StringComparison.OrdinalIgnoreCase))
+                e.Accepted = false;
+
+            if (string.IsNullOrWhiteSpace(filteredItem.Patronymic)) e.Accepted = false;
+            else if (IsPatronymicFiltered && !filteredItem.Patronymic.Contains(Filter, StringComparison.OrdinalIgnoreCase))
+                    e.Accepted = false;
+
+            if (IsStreetFiltered && !filteredItem.Street.Contains(Filter, StringComparison.OrdinalIgnoreCase))
+                e.Accepted = false;
+
+            if (IsNumberHouseFiltered && !filteredItem.NumberHouse.Contains(Filter, StringComparison.OrdinalIgnoreCase))
+                e.Accepted = false;
+
+            if (IsHomePhoneFiltered && !filteredItem.HomePhone.Contains(Filter, StringComparison.OrdinalIgnoreCase))
+                e.Accepted = false;
+
+            if (IsWorkPhoneFiltered && !filteredItem.WorkPhone.Contains(Filter, StringComparison.OrdinalIgnoreCase))
+                e.Accepted = false;
+
+            if (IsMobilPhoneFiltered && !filteredItem.MobilPhone.Contains(Filter, StringComparison.OrdinalIgnoreCase))
+                e.Accepted = false;
+
+
+        } 
+        #endregion
 
         #region Команды
 
