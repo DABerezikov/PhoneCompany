@@ -1,5 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
+using System.Text;
 using System.Windows.Data;
 using System.Windows.Input;
 using PhoneCompany.Business.Models;
@@ -267,6 +269,32 @@ namespace PhoneCompany.UI.ViewModels
             };
         }
 
+        private void CsvFileSave(ICollection<AbonentFromViewModel> abonents, string filePath)
+        {
+            var csv = new StringBuilder();
+            
+            csv.AppendLine("Id,Name,LastName,Patronymic,Street,NumberHouse,HomePhone,WorkPhone,MobilPhone");
+
+            foreach (var abonent in abonents)
+            {
+                var newLine = string.Format(
+                    "{0},{1},{2},{3},{4},{5},{6},{7},{8}",
+                    abonent.Id,
+                    abonent.Name,
+                    abonent.LastName,
+                    abonent.Patronymic,
+                    abonent.Street,
+                    abonent.NumberHouse,
+                    abonent.HomePhone,
+                    abonent.WorkPhone,
+                    abonent.MobilPhone
+                );
+                csv.AppendLine(newLine);
+
+                File.WriteAllText(filePath, csv.ToString(), Encoding.UTF8);
+            }
+        }
+
         #endregion
 
         #region Команды
@@ -344,6 +372,30 @@ namespace PhoneCompany.UI.ViewModels
 
         }
         #endregion
+
+        #region Command CreateReportCommand - Команда для списка улиц
+
+        /// <summary> Команда для списка улиц </summary>
+        private ICommand _CreateReportCommand;
+
+        /// <summary> Команда для поиска аббонентов </summary>
+        public ICommand CreateReportCommand => _CreateReportCommand
+            ??= new LambdaCommand(OnCreateReportCommandExecuted, CanCreateReportCommandExecute);
+
+        /// <summary> Проверка возможности выполнения - Команда для списка улиц </summary>
+        private bool CanCreateReportCommandExecute() => true;
+
+        /// <summary> Логика выполнения - Команда для списка улиц </summary>
+        private void OnCreateReportCommandExecuted()
+        {
+
+            var collection = FilteredView.OfType<AbonentFromViewModel>().ToList();
+            var filePath = $"report_{DateTime.Now.ToShortDateString()}_{DateTime.Now.Hour}-{DateTime.Now.Minute}-{DateTime.Now.Second}.csv";
+            CsvFileSave(collection, filePath);
+            MessageBox.Show($"Отчет {filePath} успешно сформирован"  , "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+        #endregion
+
 
         #endregion
     }
