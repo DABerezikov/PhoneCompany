@@ -13,50 +13,50 @@ namespace PhoneCompany.UI.ViewModels
         #region Title : string - Заголовок окна
 
         /// <summary>Заголовок окна</summary>
-        private string _Title = "Поиск по номеру";
+        private string _title = "Поиск по номеру";
 
         /// <summary>Заголовок окна</summary>
-        public string Title { get => _Title; set => Set(ref _Title, value); }
+        public string Title { get => _title; set => Set(ref _title, value); }
 
         #endregion
 
         #region Abonents : ObservableCollection<> - Коллекция абонентов
 
         /// <summary>Коллекция абонентов</summary>
-        private ObservableCollection<AbonentFromViewModel> _Abonents = new (abonentsRepository);
+        private ObservableCollection<AbonentFromViewModel> _abonents = new (abonentsRepository);
 
         /// <summary>Коллекция абонентов</summary>
-        public ObservableCollection<AbonentFromViewModel> Abonents { get => _Abonents; set => Set(ref _Abonents, value); }
+        public ObservableCollection<AbonentFromViewModel> Abonents { get => _abonents; set => Set(ref _abonents, value); }
 
         #endregion
 
         #region FindAbonents : ObservableCollection<> - Коллекция найденных абонентов
 
         /// <summary>Коллекция найденных абонентов</summary>
-        private ObservableCollection<AbonentFromViewModel> _FindAbonents = [];
+        private ObservableCollection<AbonentFromViewModel> _findAbonents = [];
 
         /// <summary>Коллекция найденных абонентов</summary>
-        public ObservableCollection<AbonentFromViewModel> FindAbonents { get => _FindAbonents; set => Set(ref _FindAbonents, value); }
+        public ObservableCollection<AbonentFromViewModel> FindAbonents { get => _findAbonents; set => Set(ref _findAbonents, value); }
 
         #endregion
 
         #region FindingNumber : string - Коллекция абонентов
 
         /// <summary>Заголовок окна</summary>
-        private string _FindingNumber = "Введите номер";
+        private string _findingNumber = "Введите номер";
 
         /// <summary>Заголовок окна</summary>
-        public string FindingNumber { get => _FindingNumber; set => Set(ref _FindingNumber, value); }
+        public string FindingNumber { get => _findingNumber; set => Set(ref _findingNumber, value); }
 
         #endregion
 
         #region Command SearchCommand - Команда для поиска абонентов
 
         /// <summary> Команда для поиска абонентов </summary>
-        private ICommand _SearchCommand;
+        private ICommand? _searchCommand;
 
         /// <summary> Команда для поиска абонентов </summary>
-        public ICommand SearchCommand => _SearchCommand
+        public ICommand SearchCommand => _searchCommand
             ??= new LambdaCommand(OnSearchCommandExecuted, CanSearchCommandExecute);
 
         /// <summary> Проверка возможности выполнения - Команда для поиска абонентов </summary>

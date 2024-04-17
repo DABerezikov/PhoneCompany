@@ -16,7 +16,7 @@ namespace PhoneCompany.UI.ViewModels
     internal class MainWindowViewModel : ViewModel
     {
        
-        private readonly IAbonentService _abonents;
+        private readonly IAbonentService _abonentService;
         private readonly CollectionViewSource _abonentsView;
         
         public ICollectionView FilteredView => _abonentsView.View;
@@ -25,7 +25,7 @@ namespace PhoneCompany.UI.ViewModels
         public MainWindowViewModel(IAbonentService abonents
            )
         {
-            _abonents = abonents;
+            _abonentService = abonents;
             
             _abonentsView = new CollectionViewSource();
             _abonentsView.Filter += Filtering;
@@ -38,35 +38,35 @@ namespace PhoneCompany.UI.ViewModels
         #region Title : string - Заголовок окна
 
         /// <summary>Заголовок окна</summary>
-        private string _Title = "PhoneCompany";
+        private string _title = "PhoneCompany";
 
         /// <summary>Заголовок окна</summary>
-        public string Title { get => _Title; set => Set(ref _Title, value); }
+        public string Title { get => _title; set => Set(ref _title, value); }
 
         #endregion
 
         #region Abonents : ObservableCollection<Abonent> - Коллекция абонентов
 
         /// <summary>Коллекция абонентов</summary>
-        private ObservableCollection<AbonentFromViewModel> _Abonents;
+        private ObservableCollection<AbonentFromViewModel>? _abonents;
 
         /// <summary>Коллекция абонентов</summary>
-        public ObservableCollection<AbonentFromViewModel> Abonents { get => _Abonents; set => Set(ref _Abonents, value); }
+        public ObservableCollection<AbonentFromViewModel>? Abonents { get => _abonents; set => Set(ref _abonents, value); }
 
         #endregion
 
         #region Filter : string - Строка фильтрации
 
         /// <summary>Строка фильтрации</summary>
-        private string _Filter = string.Empty;
+        private string _filter = string.Empty;
 
         /// <summary>Строка фильтрации</summary>
         public string Filter
         {
-            get => _Filter;
+            get => _filter;
             set
             {
-                Set(ref _Filter, value);
+                Set(ref _filter, value);
                 FilteredView.Refresh();
             }
         }
@@ -76,15 +76,15 @@ namespace PhoneCompany.UI.ViewModels
         #region IsNameFiltered : bool - Фильтрация по имени
 
         /// <summary>Фильтрация по имени</summary>
-        private bool _IsNameFiltered;
+        private bool _isNameFiltered;
 
         /// <summary>Фильтрация по имени</summary>
         public bool IsNameFiltered
         {
-            get => _IsNameFiltered;
+            get => _isNameFiltered;
             set
             {
-                Set(ref _IsNameFiltered, value);
+                Set(ref _isNameFiltered, value);
                 FilteredView.Refresh();
             }
         }
@@ -94,15 +94,15 @@ namespace PhoneCompany.UI.ViewModels
         #region IsLastNameFiltered : bool - Фильтрация по фамилии
 
         /// <summary>Фильтрация по фамилии</summary>
-        private bool _IsLastNameFiltered = true;
+        private bool _isLastNameFiltered = true;
 
         /// <summary>Фильтрация по фамилии</summary>
         public bool IsLastNameFiltered
         {
-            get => _IsLastNameFiltered;
+            get => _isLastNameFiltered;
             set
             {
-                Set(ref _IsLastNameFiltered, value);
+                Set(ref _isLastNameFiltered, value);
                 FilteredView.Refresh();
             }
         }
@@ -112,15 +112,15 @@ namespace PhoneCompany.UI.ViewModels
         #region IsPatronymicFiltered : bool - Фильтрация по отчеству
 
         /// <summary>Фильтрация по отчеству</summary>
-        private bool _IsPatronymicFiltered;
+        private bool _isPatronymicFiltered;
 
         /// <summary>Фильтрация по отчеству</summary>
         public bool IsPatronymicFiltered
         {
-            get => _IsPatronymicFiltered;
+            get => _isPatronymicFiltered;
             set
             {
-                Set(ref _IsPatronymicFiltered, value);
+                Set(ref _isPatronymicFiltered, value);
                 FilteredView.Refresh();
             }
         }
@@ -130,15 +130,15 @@ namespace PhoneCompany.UI.ViewModels
         #region IsStreetFiltered : bool - Фильтрация по улице
 
         /// <summary>Фильтрация по улице</summary>
-        private bool _IsStreetFiltered;
+        private bool _isStreetFiltered;
 
         /// <summary>Фильтрация по улице</summary>
         public bool IsStreetFiltered
         {
-            get => _IsStreetFiltered;
+            get => _isStreetFiltered;
             set
             {
-                Set(ref _IsStreetFiltered, value);
+                Set(ref _isStreetFiltered, value);
                 FilteredView.Refresh();
             }
         }
@@ -148,15 +148,15 @@ namespace PhoneCompany.UI.ViewModels
         #region IsNumberHouseFiltered : bool - Фильтрация по номеру дома
 
         /// <summary>Фильтрация по номеру дома</summary>
-        private bool _IsNumberHouseFiltered;
+        private bool _isNumberHouseFiltered;
 
         /// <summary>Фильтрация по номеру дома</summary>
         public bool IsNumberHouseFiltered
         {
-            get => _IsNumberHouseFiltered;
+            get => _isNumberHouseFiltered;
             set
             {
-                Set(ref _IsNumberHouseFiltered, value);
+                Set(ref _isNumberHouseFiltered, value);
                 FilteredView.Refresh();
             }
         }
@@ -166,15 +166,15 @@ namespace PhoneCompany.UI.ViewModels
         #region IsHomePhoneFiltered : bool - Фильтрация по домашнему телефону
 
         /// <summary>Фильтрация по домашнему телефону</summary>
-        private bool _IsHomePhoneFiltered;
+        private bool _isHomePhoneFiltered;
 
         /// <summary>Фильтрация по домашнему телефону</summary>
         public bool IsHomePhoneFiltered
         {
-            get => _IsHomePhoneFiltered;
+            get => _isHomePhoneFiltered;
             set
             {
-                Set(ref _IsHomePhoneFiltered, value);
+                Set(ref _isHomePhoneFiltered, value);
                 FilteredView.Refresh();
             }
         }
@@ -184,15 +184,15 @@ namespace PhoneCompany.UI.ViewModels
         #region IsWorkPhoneFiltered : bool - Фильтрация по рабочему телефону
 
         /// <summary>Фильтрация по рабочему телефону</summary>
-        private bool _IsWorkPhoneFiltered;
+        private bool _isWorkPhoneFiltered;
 
         /// <summary>Фильтрация по рабочему телефону</summary>
         public bool IsWorkPhoneFiltered
         {
-            get => _IsWorkPhoneFiltered;
+            get => _isWorkPhoneFiltered;
             set
             {
-                Set(ref _IsWorkPhoneFiltered, value);
+                Set(ref _isWorkPhoneFiltered, value);
                 FilteredView.Refresh();
             }
         }
@@ -202,15 +202,15 @@ namespace PhoneCompany.UI.ViewModels
         #region IsMobilPhoneFiltered : bool - Фильтрация по мобильному телефону
 
         /// <summary>Фильтрация по мобильному телефону</summary>
-        private bool _IsMobilPhoneFiltered;
+        private bool _isMobilPhoneFiltered;
 
         /// <summary>Фильтрация по мобильному телефону</summary>
         public bool IsMobilPhoneFiltered
         {
-            get => _IsMobilPhoneFiltered;
+            get => _isMobilPhoneFiltered;
             set
             {
-                Set(ref _IsMobilPhoneFiltered, value);
+                Set(ref _isMobilPhoneFiltered, value);
                 FilteredView.Refresh();
             }
         }
@@ -302,10 +302,10 @@ namespace PhoneCompany.UI.ViewModels
         #region Command FindAbonentCommand - Команда для загрузки данных из репозитория
 
         /// <summary> Команда для загрузки данных из репозитория </summary>
-        private ICommand _LoadDataCommand;
+        private ICommand? _loadDataCommand;
 
         /// <summary> Команда для загрузки данных из репозитория </summary>
-        public ICommand LoadDataCommand => _LoadDataCommand
+        public ICommand LoadDataCommand => _loadDataCommand
             ??= new LambdaCommand(OnLoadDataCommandExecuted, CanLoadDataCommandExecute);
 
         /// <summary> Проверка возможности выполнения - Команда для загрузки данных из репозитория </summary>
@@ -314,7 +314,7 @@ namespace PhoneCompany.UI.ViewModels
         /// <summary> Логика выполнения - Команда для загрузки данных из репозитория </summary>
         private void OnLoadDataCommandExecuted()
         {
-            var collection = _abonents.Abonents.Select(CreateAbonentFromViewModel);
+            var collection = _abonentService.Abonents.Select(CreateAbonentFromViewModel);
 
             Abonents = new ObservableCollection<AbonentFromViewModel>(collection);
             _abonentsView.Source = Abonents;
@@ -326,10 +326,10 @@ namespace PhoneCompany.UI.ViewModels
         #region Command FindAbonentCommand - Команда для поиска абонентов
 
         /// <summary> Команда для поиска абонентов </summary>
-        private ICommand _FindAbonentCommand;
+        private ICommand? _findAbonentCommand;
 
         /// <summary> Команда для поиска абонентов </summary>
-        public ICommand FindAbonentCommand => _FindAbonentCommand
+        public ICommand FindAbonentCommand => _findAbonentCommand
             ??= new LambdaCommand(OnFindAbonentCommandExecuted, CanFindAbonentCommandExecute);
 
         /// <summary> Проверка возможности выполнения - Команда для поиска абонентов </summary>
@@ -341,7 +341,7 @@ namespace PhoneCompany.UI.ViewModels
 
             var window = new FindWindow
             {
-                DataContext = new FindWindowViewModel(Abonents)
+                DataContext = new FindWindowViewModel(Abonents!)
             };
             window.ShowDialog();
 
@@ -351,10 +351,10 @@ namespace PhoneCompany.UI.ViewModels
         #region Command StreetReportCommand - Команда для списка улиц
 
         /// <summary> Команда для списка улиц </summary>
-        private ICommand _StreetReportCommand;
+        private ICommand? _streetReportCommand;
 
         /// <summary> Команда для поиска аббонентов </summary>
-        public ICommand StreetReportCommand => _StreetReportCommand
+        public ICommand StreetReportCommand => _streetReportCommand
             ??= new LambdaCommand(OnStreetReportCommandExecuted, CanStreetReportCommandExecute);
 
         /// <summary> Проверка возможности выполнения - Команда для списка улиц </summary>
@@ -376,10 +376,10 @@ namespace PhoneCompany.UI.ViewModels
         #region Command CreateReportCommand - Команда для списка улиц
 
         /// <summary> Команда для списка улиц </summary>
-        private ICommand _CreateReportCommand;
+        private ICommand? _createReportCommand;
 
         /// <summary> Команда для поиска аббонентов </summary>
-        public ICommand CreateReportCommand => _CreateReportCommand
+        public ICommand CreateReportCommand => _createReportCommand
             ??= new LambdaCommand(OnCreateReportCommandExecuted, CanCreateReportCommandExecute);
 
         /// <summary> Проверка возможности выполнения - Команда для списка улиц </summary>

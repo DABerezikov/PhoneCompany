@@ -6,14 +6,9 @@ namespace PhoneCompany.Business.Services
 {
     public class AbonentService(
         IRepository<Abonent> abonents
-        
         ) : IAbonentService
     {
-        private IRepository<Abonent> AbonentRepository = abonents;
-       
-
-        public ICollection<Abonent> Abonents => AbonentRepository.GetList();
-
+        public ICollection<Abonent> Abonents => abonents.GetList();
        
     }
 }

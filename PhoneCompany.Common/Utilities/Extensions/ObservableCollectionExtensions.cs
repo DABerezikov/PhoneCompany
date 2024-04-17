@@ -4,7 +4,7 @@ namespace PhoneCompany.Common.Utilities.Extensions
 {
     public static class ObservableCollectionExtensions
     {
-        public static void Add<T>(this ObservableCollection<T> collection, IEnumerable<T> items)
+        public static void AddRange<T>(this ObservableCollection<T> collection, IEnumerable<T> items)
         {
             foreach (var item in items)
             {
@@ -12,10 +12,10 @@ namespace PhoneCompany.Common.Utilities.Extensions
             }
         }
 
-        public static void AddClear<T>(this ObservableCollection<T> collection, IEnumerable<T> items)
+        public static void AddRangeClear<T>(this ObservableCollection<T> collection, IEnumerable<T> items)
         {
             collection.Clear();
-            collection.Add(items);
+            collection.AddRange(items);
         }
     }
 }

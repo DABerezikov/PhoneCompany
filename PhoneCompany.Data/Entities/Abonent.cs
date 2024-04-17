@@ -16,6 +16,6 @@
         
         public Address Address { get; set; }
         
-        public PhoneNumber PhoneNumbers { get; set; }
+        public PhoneNumbers PhoneNumbers { get; set; }
     }
 }

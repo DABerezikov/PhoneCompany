@@ -1,6 +1,6 @@
 ﻿namespace PhoneCompany.Data.Entities;
 
-public class PhoneNumber
+public class PhoneNumbers
 
 {
 

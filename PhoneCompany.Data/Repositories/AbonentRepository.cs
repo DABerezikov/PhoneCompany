@@ -44,7 +44,7 @@ public class AbonentRepository(DbInitializer dbInitializer) : IRepository<Abonen
 
         
 
-            return Connection.Query<Abonent, Address, PhoneNumber, Street, Abonent>(sqlquery,
+            return Connection.Query<Abonent, Address, PhoneNumbers, Street, Abonent>(sqlquery,
 
                 (abonent, address, phoneNumber, street) =>
 
