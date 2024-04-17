@@ -2,12 +2,13 @@
 using Dapper;
 using PhoneCompany.Data.Context;
 using PhoneCompany.Data.Entities;
+using PhoneCompany.Data.Repositories.Interfaces;
 
 namespace PhoneCompany.Data.Repositories
 {
     public class StreetRepository(DbInitializer dbInitializer) : IRepository<Street>
     {
-        public SQLiteConnection Connection { get; } = dbInitializer.Connection;
+        public SQLiteConnection? Connection { get; } = dbInitializer.Connection;
 
 
         public void Create(Street street)

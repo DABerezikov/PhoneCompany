@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-
-namespace PhoneCompany.UI.ViewModels
+﻿namespace PhoneCompany.UI.ViewModels
 {
     internal class ViewModelLocator
     {

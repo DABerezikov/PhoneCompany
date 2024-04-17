@@ -1,8 +1,6 @@
 ﻿using PhoneCompany.Business.Models;
 using PhoneCompany.UI.Commands;
 using PhoneCompany.UI.ViewModels.Base;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
 
 namespace PhoneCompany.UI.ViewModels
 {

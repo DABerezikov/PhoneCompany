@@ -5,13 +5,11 @@ namespace PhoneCompany.Data.Context
 {
     public class DbInitializer(string? connectionString) :IDisposable
     {
-        private readonly string? _connectionString = connectionString;
-
-        public SQLiteConnection Connection { get; private set; }
+        public SQLiteConnection? Connection { get; private set; }
 
         public void Initialize()
         {
-            Connection = new SQLiteConnection(_connectionString);
+            Connection = new SQLiteConnection(connectionString);
             Connection.Open();
 
             CreateTables();
@@ -47,7 +45,7 @@ namespace PhoneCompany.Data.Context
                                             FOREIGN KEY (AddressId) REFERENCES Addresses(Id),
                                             FOREIGN KEY (PhoneNumberId) REFERENCES PhoneNumbers(Id));";
 
-            Connection.Execute(sqlCreateTables);
+            Connection?.Execute(sqlCreateTables);
         }
 
         private void UpdateTables()
@@ -121,14 +119,13 @@ namespace PhoneCompany.Data.Context
                                                     (6, 19, 'Александр', 'Макаров', 'Игоревич'),
                                                     (7, 20, 'Дарья', 'Андреева', 'Константиновна');
                                             ";
-            Connection.Execute(sqlUpdateTables);
-
+            Connection?.Execute(sqlUpdateTables);
         }
 
 
         public void Dispose()
         {
-            Connection.Close();
+            Connection?.Close();
         }
     }
 }

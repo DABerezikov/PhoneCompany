@@ -1,6 +1,6 @@
 ﻿using PhoneCompany.Common.Interfaces;
 using PhoneCompany.Data.Entities;
-using PhoneCompany.Data.Repositories;
+using PhoneCompany.Data.Repositories.Interfaces;
 
 namespace PhoneCompany.Business.Services
 {

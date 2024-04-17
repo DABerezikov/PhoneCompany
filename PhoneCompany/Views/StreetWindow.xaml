@@ -6,7 +6,7 @@
         xmlns:viewModels="clr-namespace:PhoneCompany.UI.ViewModels"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         d:DataContext="{d:DesignInstance {x:Type viewModels:StreetWindowsViewModel}}"
-        Title="{Binding Title}" Height="200" Width="400">
+        Title="{Binding Title}" Height="600" Width="400">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">

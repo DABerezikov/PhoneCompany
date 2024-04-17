@@ -2,12 +2,13 @@
 using Dapper;
 using PhoneCompany.Data.Context;
 using PhoneCompany.Data.Entities;
+using PhoneCompany.Data.Repositories.Interfaces;
 
 namespace PhoneCompany.Data.Repositories;
 
 public class AbonentRepository(DbInitializer dbInitializer) : IRepository<Abonent>
 {
-    public SQLiteConnection Connection { get; } = dbInitializer.Connection;
+    public SQLiteConnection? Connection { get; } = dbInitializer.Connection;
 
 
     public void Create(Abonent abonent)

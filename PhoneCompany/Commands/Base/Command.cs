@@ -1,6 +1,4 @@
-﻿using System.Windows.Input;
-
-namespace PhoneCompany.UI.Commands.Base
+﻿namespace PhoneCompany.UI.Commands.Base
 {
     internal abstract class Command : ICommand
     {

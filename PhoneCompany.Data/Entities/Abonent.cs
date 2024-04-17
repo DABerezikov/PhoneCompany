@@ -1,21 +1,20 @@
-﻿namespace PhoneCompany.Data.Entities
-{
-    public class Abonent 
-    {
-        public int Id { get; set; }
+﻿namespace PhoneCompany.Data.Entities;
 
-        public int AddressId { get; set; }
+public record Abonent 
+{
+    public int Id { get; init; }
+
+    public int AddressId { get; init; }
         
-        public int PhoneNumberId { get; set; }
+    public int PhoneNumberId { get; init; }
         
-        public string Name { get; set; }
+    public string Name { get; init; }
         
-        public string LastName { get; set; }
+    public string LastName { get; init; }
         
-        public string Patronymic { get; set; }
+    public string Patronymic { get; init; }
         
-        public Address Address { get; set; }
+    public Address Address { get; set; }
         
-        public PhoneNumbers PhoneNumbers { get; set; }
-    }
+    public PhoneNumbers PhoneNumbers { get; set; }
 }

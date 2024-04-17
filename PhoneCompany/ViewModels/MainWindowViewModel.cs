@@ -1,9 +1,6 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.IO;
+﻿using System.IO;
 using System.Text;
 using System.Windows.Data;
-using System.Windows.Input;
 using PhoneCompany.Business.Models;
 using PhoneCompany.Common.Interfaces;
 using PhoneCompany.Data.Entities;

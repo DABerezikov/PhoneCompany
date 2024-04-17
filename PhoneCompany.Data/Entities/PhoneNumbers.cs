@@ -1,15 +1,15 @@
 ﻿namespace PhoneCompany.Data.Entities;
 
-public class PhoneNumbers
+public record PhoneNumbers
 
 {
 
-    public int Id { get; set; }
+    public int Id { get; init; }
 
-    public string HomePhone { get; set; }
+    public string HomePhone { get; init; }
 
-    public string WorkPhone { get; set; }
+    public string WorkPhone { get; init; }
 
-    public string MobilPhone { get; set; }
+    public string MobilPhone { get; init; }
 
 }

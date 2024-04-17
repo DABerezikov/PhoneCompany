@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows.Input;
-using PhoneCompany.Business.Models;
+﻿using PhoneCompany.Business.Models;
 using PhoneCompany.UI.Commands;
 using PhoneCompany.UI.ViewModels.Base;
 
