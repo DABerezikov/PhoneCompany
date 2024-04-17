@@ -4,22 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa5="http://schemas.fontawesome.com/icons/"
-        xmlns:local="clr-namespace:PhoneCompany.UI.Views"
         xmlns:viewModels="clr-namespace:PhoneCompany.UI.ViewModels"
         d:DataContext="{d:DesignInstance {x:Type viewModels:FindWindowViewModel}}"
         Title="{Binding Title}" Height="200" Width="1200">
     <Grid>
         
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
-            <ColumnDefinition Width="410"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="410" />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition></RowDefinition>
-            
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+
         </Grid.RowDefinitions>
         <TextBlock Grid.Column="0" Grid.Row="0" Text="Номер телефона:" Margin="10,0,0,0" Width="100"/>
         <TextBox Grid.Column="1" Grid.Row="0" Style="{StaticResource TextBoxStyle}" Width="400" Height="24" HorizontalAlignment="Left" Margin="10,0,0,0"

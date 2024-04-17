@@ -295,25 +295,52 @@ namespace PhoneCompany.UI.ViewModels
         }
         #endregion
 
-        #region Command FindAbonentCommand - Команда для поиска аббонентов
+        #region Command FindAbonentCommand - Команда для поиска абонентов
 
-        /// <summary> Команда для поиска аббонентов </summary>
+        /// <summary> Команда для поиска абонентов </summary>
         private ICommand _FindAbonentCommand;
 
-        /// <summary> Команда для поиска аббонентов </summary>
+        /// <summary> Команда для поиска абонентов </summary>
         public ICommand FindAbonentCommand => _FindAbonentCommand
             ??= new LambdaCommand(OnFindAbonentCommandExecuted, CanFindAbonentCommandExecute);
 
-        /// <summary> Проверка возможности выполнения - Команда для поиска аббонентов </summary>
+        /// <summary> Проверка возможности выполнения - Команда для поиска абонентов </summary>
         private bool CanFindAbonentCommandExecute() => true;
 
-        /// <summary> Логика выполнения - Команда для поиска аббонентов </summary>
+        /// <summary> Логика выполнения - Команда для поиска абонентов </summary>
         private void OnFindAbonentCommandExecuted()
         {
 
-            var window = new FindWindow();
-            window.DataContext = new FindWindowViewModel(Abonents);
-            window.Show();
+            var window = new FindWindow
+            {
+                DataContext = new FindWindowViewModel(Abonents)
+            };
+            window.ShowDialog();
+
+        }
+        #endregion
+
+        #region Command StreetReportCommand - Команда для списка улиц
+
+        /// <summary> Команда для списка улиц </summary>
+        private ICommand _StreetReportCommand;
+
+        /// <summary> Команда для поиска аббонентов </summary>
+        public ICommand StreetReportCommand => _StreetReportCommand
+            ??= new LambdaCommand(OnStreetReportCommandExecuted, CanStreetReportCommandExecute);
+
+        /// <summary> Проверка возможности выполнения - Команда для списка улиц </summary>
+        private bool CanStreetReportCommandExecute() => true;
+
+        /// <summary> Логика выполнения - Команда для списка улиц </summary>
+        private void OnStreetReportCommandExecuted()
+        {
+
+            var window = new StreetWindow
+            {
+                DataContext = new StreetWindowsViewModel(Abonents)
+            };
+            window.ShowDialog();
 
         }
         #endregion
