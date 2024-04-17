@@ -34,28 +34,29 @@ namespace PhoneCompany.UI.ViewModels
             if (string.IsNullOrWhiteSpace(Filter)) return;
             if (e.Item is not AbonentFromViewModel filteredItem) return;
 
-            if (!filteredItem.Name.Contains(Filter, StringComparison.OrdinalIgnoreCase))
+            if (IsNameFiltered && !filteredItem.Name.Contains(Filter, StringComparison.OrdinalIgnoreCase))
                 e.Accepted = false;
             
-            if (!filteredItem.LastName.Contains(Filter, StringComparison.OrdinalIgnoreCase))
+            if (IsLastNameFiltered && !filteredItem.LastName.Contains(Filter, StringComparison.OrdinalIgnoreCase))
+                e.Accepted = false;
+           
+            if(!string.IsNullOrWhiteSpace(filteredItem.Patronymic))
+                if ( IsPatronymicFiltered || !filteredItem.Patronymic.Contains(Filter, StringComparison.OrdinalIgnoreCase))
+                    e.Accepted = false;
+            
+            if (IsStreetFiltered && !filteredItem.Street.Contains(Filter, StringComparison.OrdinalIgnoreCase))
                 e.Accepted = false;
             
-            if (string.IsNullOrWhiteSpace(filteredItem.Patronymic) || !filteredItem.Patronymic.Contains(Filter, StringComparison.OrdinalIgnoreCase))
+            if (IsNumberHouseFiltered && !filteredItem.NumberHouse.Contains(Filter, StringComparison.OrdinalIgnoreCase))
                 e.Accepted = false;
             
-            if (!filteredItem.Street.Contains(Filter, StringComparison.OrdinalIgnoreCase))
+            if (IsHomePhoneFiltered && !filteredItem.HomePhone.Contains(Filter, StringComparison.OrdinalIgnoreCase))
                 e.Accepted = false;
             
-            if (!filteredItem.NumberHouse.Contains(Filter, StringComparison.OrdinalIgnoreCase))
+            if (IsWorkPhoneFiltered && !filteredItem.WorkPhone.Contains(Filter, StringComparison.OrdinalIgnoreCase))
                 e.Accepted = false;
             
-            if (!filteredItem.HomePhone.Contains(Filter, StringComparison.OrdinalIgnoreCase))
-                e.Accepted = false;
-            
-            if (!filteredItem.WorkPhone.Contains(Filter, StringComparison.OrdinalIgnoreCase))
-                e.Accepted = false;
-            
-            if (!filteredItem.MobilPhone.Contains(Filter, StringComparison.OrdinalIgnoreCase))
+            if (IsMobilPhoneFiltered && !filteredItem.MobilPhone.Contains(Filter, StringComparison.OrdinalIgnoreCase))
                 e.Accepted = false;
             
 

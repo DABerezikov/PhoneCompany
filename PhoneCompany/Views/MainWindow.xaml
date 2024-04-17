@@ -44,14 +44,6 @@
         <DataGrid DockPanel.Dock="Top" ItemsSource="{Binding FilteredView}"
                   ColumnHeaderStyle="{StaticResource CenterGridHeaderStyle}" IsReadOnly="True" CanUserAddRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Name}" Width="2*">
-                        <DataGridTextColumn.Header>
-                            <DockPanel>
-                                <TextBlock  DockPanel.Dock="Left" Text="Имя" />
-                            <CheckBox DockPanel.Dock="Left" Content="{Binding IsNameFiltered}" Margin="10,0,0,0"/>
-                            </DockPanel>
-                        </DataGridTextColumn.Header>
-                    </DataGridTextColumn>
                     <DataGridTextColumn Binding="{Binding LastName}" Width="2*">
                         <DataGridTextColumn.Header>
                             <DockPanel>
@@ -59,6 +51,14 @@
                                 <CheckBox DockPanel.Dock="Left" Content="{Binding IsLastNameFiltered}" Margin="10,0,0,0"/>
                             </DockPanel>
                     </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Name}" Width="2*">
+                        <DataGridTextColumn.Header>
+                            <DockPanel>
+                                <TextBlock  DockPanel.Dock="Left" Text="Имя" />
+                            <CheckBox DockPanel.Dock="Left" Content="{Binding IsNameFiltered}" Margin="10,0,0,0"/>
+                            </DockPanel>
+                        </DataGridTextColumn.Header>
                     </DataGridTextColumn>
                     <DataGridTextColumn Binding="{Binding Patronymic}" Width="2*">
                         <DataGridTextColumn.Header>
